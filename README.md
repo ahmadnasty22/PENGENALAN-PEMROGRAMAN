@@ -1,2 +1,2 @@
-# FINANCIAL_TRACKER.py
+# FINANCIAL_TRACKER
 Program transaksi sederhana menggunakan Python
