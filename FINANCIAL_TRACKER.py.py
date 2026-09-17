@@ -1,10 +1,6 @@
 import csv
 from datetime import datetime
 
-# ==============================
-#  LOAD & SAVE TRANSACTIONS
-# ==============================
-
 def load_transactions(filename="transactions.csv"):
     data = []
     try:
@@ -16,7 +12,7 @@ def load_transactions(filename="transactions.csv"):
 
     except FileNotFoundError:
         print("[INFO] File CSV tidak ditemukan, membuat file baru...")
-        return []  # first run (kosong)
+        return []
 
     except Exception:
         print("[ERROR] CSV Format Error – File corrupt.")
@@ -34,10 +30,6 @@ def save_transactions(data, filename="transactions.csv"):
     except Exception:
         print("[ERROR] Gagal menyimpan data ke CSV.")
 
-
-# ==============================
-#  VALIDASI INPUT
-# ==============================
 
 def validate_amount(value):
     try:
@@ -58,10 +50,6 @@ def validate_date(value):
         print("Format tanggal salah! Gunakan format YYYY-MM-DD.")
         return None
 
-
-# ==============================
-#  FUNGSI TAMBAH TRANSAKSI
-# ==============================
 
 def tambah_transaksi(data):
     print("\n=== Tambah Transaksi ===")
@@ -94,10 +82,6 @@ def tambah_transaksi(data):
     print("[SUCCESS] Transaksi berhasil ditambahkan!")
 
 
-# ==============================
-#  LIHAT TRANSAKSI + FILTER
-# ==============================
-
 def lihat_transaksi(data):
     print("\n=== Lihat Transaksi ===")
     print("1. Semua transaksi")
@@ -115,10 +99,6 @@ def lihat_transaksi(data):
 
         print(f"{d['tanggal']} | {d['jenis']} | {d['kategori']} | Rp{d['jumlah']} | {d['catatan']}")
 
-
-# ==============================
-#  LAPORAN BULANAN
-# ==============================
 
 def laporan_bulanan(data):
     print("\n=== Laporan Bulanan ===")
@@ -153,10 +133,6 @@ def laporan_bulanan(data):
         print(f"Kategori pengeluaran terbesar: {top_category} (Rp{kategori_spending[top_category]})")
 
 
-# ==============================
-#  EXPORT DATA
-# ==============================
-
 def export_data(data):
     filename = "export_finance.csv"
     try:
@@ -164,10 +140,6 @@ def export_data(data):
     except Exception:
         print("[ERROR] Gagal export data.")
 
-
-# ==============================
-#  DASHBOARD
-# ==============================
 
 def dashboard(data):
     pemasukan = sum(float(d["jumlah"]) for d in data if d["jenis"] == "pemasukan")
@@ -180,10 +152,6 @@ def dashboard(data):
     for d in data[-5:]:
         print(f"- {d['tanggal']} | {d['jenis']} | Rp{d['jumlah']}")
 
-
-# ==============================
-#  MAIN MENU
-# ==============================
 
 def main_menu():
     data = load_transactions()
@@ -221,10 +189,6 @@ def main_menu():
             print("\n[ERROR] Program dihentikan paksa.")
             break
 
-
-# ==============================
-#  RUN PROGRAM
-# ==============================
 
 if __name__ == "__main__":
     main_menu()
